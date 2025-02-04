@@ -2,13 +2,13 @@ package com.mycommerce.step_definitions;
 
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.ScreenshotType;
 import com.mycommerce.utilities.ConfigReader;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
+import io.cucumber.java.*;
 
 import java.awt.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Hooks {
 
@@ -75,8 +75,10 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
-        // Close the browser context and page after each scenario
+    public void tearDown(Scenario scenario) {
+     captureScreenShotForFailedScenario(scenario);
+
+     // Close the browser context and page after each scenario
         if (page != null) {
             page.close();
             System.out.println("Scenario teardown: Page closed");
@@ -103,5 +105,26 @@ public class Hooks {
     public static Page getPage() {
         return page;
     }
+
+
+    private void captureScreenShotForFailedScenario(Scenario scenario){
+        if (scenario.isFailed()) {
+            byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
+                    .setFullPage(true) // Capture full page
+                    .setType(ScreenshotType.PNG));
+
+            // Attach screenshot to Cucumber report (if using reporting tools)
+            scenario.attach(screenshot, "image/png", "Screenshot on Failure");
+
+            // Save locally
+            Path screenshotPath = Paths.get("screenshots", scenario.getName() + ".png");
+            try {
+                java.nio.file.Files.write(screenshotPath, screenshot);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
 
