@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 
 
@@ -12,8 +12,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class HomePageStep  {
         System.out.println("Expected: "+title);
         System.out.println("Actual: "+basePage.getPageTitle(page));
 
-        Assert.assertEquals(title, basePage.getPageTitle(page));
+        assertEquals(title, basePage.getPageTitle(page));
     }
 
     @Then("the user should see following tabs:")
@@ -74,7 +75,7 @@ public class HomePageStep  {
 
     @Then("the user should Automation Exercise Logo")
     public void the_user_should_automation_exercise_logo() {
-        Assertions.assertTrue(headerComponent.isLogoVisible(), "Logo is not visible");
+       assertTrue(headerComponent.isLogoVisible(), "Logo is not visible");
     }
 
     // ================== Verify Test Cases Page =================
@@ -87,7 +88,7 @@ public class HomePageStep  {
     @Then("the user should see following categories on the left side bar:")
     public void the_user_should_see_following_categories_on_the_left_side_bar(List<String> categories) {
         sideBar.getCategories().forEach(category -> {
-           Assertions.assertTrue(categories.toString().contains(category.textContent().trim()));
+           assertTrue(categories.toString().contains(category.textContent().trim()));
 
        });
     }
@@ -111,14 +112,14 @@ public class HomePageStep  {
     public void the_user_verifies_that_the_category_page_is_displayed() {
         String expectedPageTitle = AppConstant.HOME_PAGE_TITLE+" - "+subcategoryName+" Products";
         System.out.println(expectedPageTitle);
-        Assert.assertEquals(expectedPageTitle, basePage.getPageTitle(page));
+        assertEquals(expectedPageTitle, basePage.getPageTitle(page));
     }
 
     @Then("the user should see the heading which include both category and sub category")
     public void the_user_should_see_the_heading_which_include_both_category_and_sub_category() {
         String expectedHeading = categoryName+" - "+subcategoryName +" Products";
         System.out.println(expectedHeading);
-        Assert.assertTrue(basePage.isTheHeadingWithGivenTextVisible(expectedHeading));
+        assertTrue(basePage.isTheHeadingWithGivenTextVisible(expectedHeading));
     }
 
     // ============== Verify Scroll Up using 'Arrow' button and Scroll Down functionality =================

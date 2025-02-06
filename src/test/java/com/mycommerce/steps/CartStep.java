@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
@@ -6,12 +6,11 @@ import com.mycommerce.pages.*;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 
 import java.util.Map;
 import java.util.Random;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CartStep {
     private final Page page;
@@ -61,17 +60,17 @@ public class CartStep {
 
     @Then("the user verifies that both products are added to Cart")
     public void the_user_verifies_that_both_products_are_added_to_cart() {
-        Assert.assertEquals(2, cartPage.getItemCount());
-        Assert.assertEquals(ConfigReader.get("productName1"), cartPage.getItemDescriptions().get(0));
-        Assert.assertEquals(ConfigReader.get("productName2"), cartPage.getItemDescriptions().get(1));
+        assertEquals(2, cartPage.getItemCount());
+        assertEquals(ConfigReader.get("productName1"), cartPage.getItemDescriptions().get(0));
+        assertEquals(ConfigReader.get("productName2"), cartPage.getItemDescriptions().get(1));
 
         System.out.println("Product info verified");
     }
 
     @Then("the user verifies their prices, quantity and total price")
     public void the_user_verifies_their_prices_quantity_and_total_price() {
-        Assert.assertEquals(ConfigReader.get("productPrice1"), cartPage.getItemPrices().get(0));
-        Assert.assertEquals(ConfigReader.get("productPrice2"), cartPage.getItemPrices().get(1));
+        assertEquals(ConfigReader.get("productPrice1"), cartPage.getItemPrices().get(0));
+        assertEquals(ConfigReader.get("productPrice2"), cartPage.getItemPrices().get(1));
 
 
         System.out.println("Prices are verified");
@@ -118,7 +117,7 @@ public class CartStep {
         Map<String, String>productDataOnTable =cartPage.getRowData(1);
         System.out.println(productDataOnTable.get("Quantity").trim());
         System.out.println(ConfigReader.get("productQuantity"));
-        Assert.assertEquals(ConfigReader.get("productQuantity"), productDataOnTable.get("Quantity").trim());
+        assertEquals(ConfigReader.get("productQuantity"), productDataOnTable.get("Quantity").trim());
     }
 
     // ========== Remove products from cart =================================================================
@@ -129,7 +128,7 @@ public class CartStep {
 
     @Then("the user verifies that the product is removed from the cart")
     public void the_user_verifies_that_the_product_is_removed_from_the_cart() {
-        Assert.assertEquals(AppConstant.EMPTY_CART_TEXT, cartPage.getEmptyCartText().trim());
+        assertEquals(AppConstant.EMPTY_CART_TEXT, cartPage.getEmptyCartText().trim());
 
     }
     // ===============Add to cart from Recommended items =============================
@@ -146,7 +145,7 @@ public class CartStep {
 
     @Then("the user verifies that the product is displayed on the cart page")
     public void the_user_verifies_that_the_product_is_displayed_on_the_cart_page() {
-        Assert.assertTrue(cartPage.getItemDescriptions().toString().contains(ConfigReader.get("recommendProductName")));
+        assertTrue(cartPage.getItemDescriptions().toString().contains(ConfigReader.get("recommendProductName")));
 
     }
 

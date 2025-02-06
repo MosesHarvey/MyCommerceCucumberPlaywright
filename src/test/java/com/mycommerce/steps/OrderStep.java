@@ -1,19 +1,25 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.microsoft.playwright.Page;
-import com.mycommerce.pages.*;
+
+import com.mycommerce.pages.BasePage;
+import com.mycommerce.pages.CartPage;
+import com.mycommerce.pages.CheckoutModal;
+import com.mycommerce.pages.CheckoutPage;
+import com.mycommerce.pages.PaymentPage;
+import com.mycommerce.pages.ProductSection;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderStep {
     private final Page page;
-    private BasePage basePage;
+    private  BasePage basePage;
     private  CartPage cartPage;
     private  CheckoutModal checkoutModal;
     private  CheckoutPage checkoutPage;
     private  PaymentPage paymentPage;
-    private ProductSection productSection;
+    private  ProductSection productSection;
 
     public OrderStep() {
         this.page = Hooks.getPage();
@@ -34,7 +40,7 @@ public class OrderStep {
     @When("the user clicks Proceed To Checkout button")
     public void the_user_clicks_proceed_to_checkout_button() {
 
-        checkoutModal =cartPage.clickProceedToCheckoutBtn();
+        cartPage.clickProceedToCheckoutBtn();
     }
 
 
@@ -68,7 +74,7 @@ public class OrderStep {
 
     @Then("the user verifies success message {string}")
     public void the_user_verifies_success_message(String successMessage) {
-        Assert.assertTrue(BasePage.isElementWithTextVisible(Hooks.getPage(),successMessage));
+        assertTrue(BasePage.isElementWithTextVisible(Hooks.getPage(),successMessage));
     }
 
 

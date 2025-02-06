@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.microsoft.playwright.Page;
 import com.mycommerce.pages.BasePage;
@@ -8,8 +8,7 @@ import com.mycommerce.pages.RegisterPage;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
+import static  org.junit.jupiter.api.Assertions.*;
 
 public class RegisterSteps {
     private final Page page;
@@ -47,7 +46,7 @@ public class RegisterSteps {
     }
     @Then("the user should see the heading {string}")
     public void the_user_should_see_the_heading(String heading) {
-        Assertions.assertTrue(basePage.isTheHeadingWithGivenTextVisible(heading), "The heading {string} is not visible");
+        assertTrue(basePage.isTheHeadingWithGivenTextVisible(heading), "The heading {string} is not visible");
     }
 
     @When("the user clicks Create Account button")
@@ -65,7 +64,7 @@ public class RegisterSteps {
     @Then("Logged in as Mr. with full Name should be visible")
     public void logged_in_as_mr_with_full_name_should_be_visible() {
 
-        Assert.assertEquals(ConfigReader.get("fullName"),loginPage.getUserName());
+        assertEquals(ConfigReader.get("fullName"),loginPage.getUserName());
     }
 
     @When("the user clicks Delete Account button")
@@ -75,7 +74,7 @@ public class RegisterSteps {
 
     @Then("the user verifies that {string} is visible")
     public void the_user_verifies_that_is_visible(String registerHeading) {
-        Assert.assertEquals(registerHeading, registerPage.getSignUpHeading(registerHeading) );
+        assertEquals(registerHeading, registerPage.getSignUpHeading(registerHeading) );
 
     }
     @When("the user fills details: Title, Name, Email, Password, Date of birth")
@@ -100,7 +99,7 @@ public class RegisterSteps {
 
     @Then("the user verifies that the error {string} is visible")
     public void the_user_verifies_that_the_error_is_visible(String errorMessage) {
-        Assert.assertTrue(registerPage.isErrorMessageVisible(errorMessage));
+        assertTrue(registerPage.isErrorMessageVisible(errorMessage));
     }
 
 

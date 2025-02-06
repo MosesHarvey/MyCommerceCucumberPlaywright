@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
@@ -8,7 +8,9 @@ import com.mycommerce.pages.HeaderComponent;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class ContactUsStep {
     private final Page page;
@@ -64,7 +66,7 @@ public class ContactUsStep {
     @Then("the success message {string} should be visible on contact us page")
     public void the_success_message_should_be_visible_on_contact_us_page(String alertText) {
 
-        Assertions.assertTrue(contactUsPage.isSuccessMessageVisible(alertText),"Success message is not visible!");
+       assertTrue(contactUsPage.isSuccessMessageVisible(alertText),"Success message is not visible!");
 
     }
 

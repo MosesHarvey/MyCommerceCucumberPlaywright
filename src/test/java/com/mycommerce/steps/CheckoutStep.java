@@ -1,11 +1,11 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Page;
 import com.mycommerce.pages.CheckoutPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CheckoutStep {
     private final Page page;
@@ -27,7 +27,7 @@ public class CheckoutStep {
 
     @Then("the user verifies that invoice is downloaded successfully")
     public void the_user_verifies_that_invoice_is_downloaded_successfully() {
-        Assert.assertTrue(checkoutPage.isFileDownloaded(download));
+       assertTrue(checkoutPage.isFileDownloaded(download));
     }
 
 

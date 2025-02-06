@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 
 import com.microsoft.playwright.*;

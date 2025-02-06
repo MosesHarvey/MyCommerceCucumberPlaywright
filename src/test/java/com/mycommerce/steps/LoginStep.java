@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 
 import com.microsoft.playwright.Page;
@@ -7,7 +7,8 @@ import com.mycommerce.pages.LoginSignUpPage;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 
 public class LoginStep {
@@ -42,7 +43,7 @@ public class LoginStep {
     }
     @Then("Logged in as {string} should be visible")
     public void Logged_in_as_should_be_visible(String username) {
-        Assert.assertEquals(ConfigReader.get("userName"),loginPage.getUserName());
+        assertEquals(ConfigReader.get("userName"),loginPage.getUserName());
 
     }
 
@@ -56,8 +57,8 @@ public class LoginStep {
 
     @Then("the user should see {string} error message")
     public void the_user_should_see_error_message(String errorMessage) {
-        Assert.assertTrue(loginPage.isErrorMessageVisible());
-        Assert.assertEquals(errorMessage, loginPage.getErrorMessageText());
+        assertTrue(loginPage.isErrorMessageVisible());
+        assertEquals(errorMessage, loginPage.getErrorMessageText());
 
     }
 

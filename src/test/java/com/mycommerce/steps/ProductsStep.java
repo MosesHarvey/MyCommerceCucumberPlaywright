@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.github.javafaker.Faker;
 import com.microsoft.playwright.Page;
@@ -7,8 +7,10 @@ import com.mycommerce.pages.*;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+
 import org.assertj.core.api.SoftAssertions;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class ProductsStep {
 
     @Then("the products list is visible")
     public void the_products_list_is_visible() {
-       Assert.assertTrue(productSection.getProductCount()>0);
+       assertTrue(productSection.getProductCount()>0);
     }
     @When("the user clicks on View Product of the first product")
     public void the_user_clicks_on_View_Product_of_the_first_product() {
@@ -55,25 +57,25 @@ public class ProductsStep {
     @Then("the user should be landed on the product detail page")
     public void the_user_should_be_landed_on_the_product_detail_page() {
 
-     Assert.assertEquals( AppConstant.PRODUCT_DETAIL_PAGE_TITLE,page.title());
+     assertEquals( AppConstant.PRODUCT_DETAIL_PAGE_TITLE,page.title());
     }
     @Then("the following details should be visible:")
     public void the_following_details_should_be_visible(List<String> details) {
 
 
         System.out.println(details.toString());
-       Assert.assertTrue(productDetailPage.getProductName().isVisible());
-        Assert.assertTrue(productDetailPage.getProductCategory().isVisible());
-        Assert.assertTrue(productDetailPage.getProductPrice().isVisible());
-        Assert.assertTrue(productDetailPage.getAvailability().isVisible());
-        Assert.assertTrue(productDetailPage.getCondition().isVisible());
-        Assert.assertTrue(productDetailPage.getBrand().isVisible());
-        Assert.assertFalse(productDetailPage.getProductName().textContent().isEmpty());
-        Assert.assertFalse(productDetailPage.getProductCategory().textContent().isEmpty());
-        Assert.assertFalse(productDetailPage.getProductPrice().textContent().isEmpty());
-        Assert.assertFalse(productDetailPage.getAvailability().textContent().isEmpty());
-        Assert.assertFalse(productDetailPage.getCondition().textContent().isEmpty());
-        Assert.assertFalse(productDetailPage.getBrand().textContent().isEmpty());
+        assertTrue(productDetailPage.getProductName().isVisible());
+        assertTrue(productDetailPage.getProductCategory().isVisible());
+        assertTrue(productDetailPage.getProductPrice().isVisible());
+        assertTrue(productDetailPage.getAvailability().isVisible());
+        assertTrue(productDetailPage.getCondition().isVisible());
+        assertTrue(productDetailPage.getBrand().isVisible());
+        assertTrue(productDetailPage.getProductName().textContent().isEmpty());
+        assertTrue(productDetailPage.getProductCategory().textContent().isEmpty());
+        assertTrue(productDetailPage.getProductPrice().textContent().isEmpty());
+        assertTrue(productDetailPage.getAvailability().textContent().isEmpty());
+        assertTrue(productDetailPage.getCondition().textContent().isEmpty());
+        assertTrue(productDetailPage.getBrand().textContent().isEmpty());
     }
 
     // ==============Product Search in the Search Box =================
@@ -89,7 +91,7 @@ public class ProductsStep {
     public void the_page_url_including_the_product_name_should_be_correct() {
         String currentUrl = Hooks.getPage().url();
         System.out.println(currentUrl);
-      Assert.assertEquals(currentUrl, AppConstant.PRODUCT_SEARCH_URL);
+        assertEquals(currentUrl, AppConstant.PRODUCT_SEARCH_URL);
 
 
     }
@@ -120,13 +122,13 @@ public class ProductsStep {
 
     @Then("the user verifies that they are navigated to the brand page")
     public void the_user_verifies_that_they_are_navigated_to_the_brand_page() {
-        Assert.assertEquals(sideBarSection.getExpectedBrandPageTitle(), basePage.getPageTitle(page));
+        assertEquals(sideBarSection.getExpectedBrandPageTitle(), basePage.getPageTitle(page));
     }
 
     @Then("the user should see that the brand products are displayed")
     public void the_user_should_see_that_the_brand_products_are_displayed() {
        String expectedBrandProductHeading = "Brand - "+ sideBarSection.getBrandNames().get(Integer.parseInt(ConfigReader.get("brandIndex")))+" Products";
-       Assert.assertTrue(basePage.isTheHeadingWithGivenTextVisible(expectedBrandProductHeading));
+       assertTrue(basePage.isTheHeadingWithGivenTextVisible(expectedBrandProductHeading));
     }
 
     // ============= Search Products and Verify Cart After Login =============================
@@ -144,7 +146,7 @@ public class ProductsStep {
     @Then("the user verifies that products are visible in cart")
     public void the_user_verifies_that_products_are_visible_in_cart() {
         String productsDescriptions=cartPage.getItemDescriptions().toString();
-        productNames.forEach(productName -> {Assert.assertTrue(productsDescriptions.contains(productName));});
+        productNames.forEach(productName -> {assertTrue(productsDescriptions.contains(productName));});
 
     }
 
@@ -156,8 +158,8 @@ public class ProductsStep {
 
     @Then("the user verifies a heading text {string} to be visible")
     public void the_user_verifies_a_heading_text_to_be_visible(String writeReviewHeading) {
-        Assert.assertTrue(productDetailPage.isWriteReviewHeadingVisible());
-        Assert.assertEquals(writeReviewHeading, productDetailPage.getWriteReviewHeading());
+        assertTrue(productDetailPage.isWriteReviewHeadingVisible());
+        assertEquals(writeReviewHeading, productDetailPage.getWriteReviewHeading());
 
     }
 

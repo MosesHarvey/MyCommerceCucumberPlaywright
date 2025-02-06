@@ -1,4 +1,4 @@
-package com.mycommerce.step_definitions;
+package com.mycommerce.steps;
 
 import com.github.javafaker.Faker;
 import com.microsoft.playwright.Page;
@@ -6,8 +6,7 @@ import com.mycommerce.pages.FooterComponent;
 import com.mycommerce.pages.HeaderComponent;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-
+import static  org.junit.jupiter.api.Assertions.*;
 public class SubscriptionStep {
     private final Page page;
     private HeaderComponent headerComponent;
@@ -33,8 +32,8 @@ public class SubscriptionStep {
 
     @Then("the success message {string} should be visible on subscribe page")
     public void the_success_message_should_be_visible_on_subscribe_page(String successMessage) {
-       Assert.assertTrue( footerComponent.isSubscribeSuccessMessageVisible());
-       Assert.assertEquals(successMessage, footerComponent.subscribeSuccessText());
+       assertTrue( footerComponent.isSubscribeSuccessMessageVisible());
+       assertEquals(successMessage, footerComponent.subscribeSuccessText());
     }
 
     // ================ Unsubscribe from Newsletter  On Cart Page ================
