@@ -13,12 +13,10 @@ public class AppConstant {
     public static final String SEARCH_TERM = "jeans";
     public static final String PRODUCT_SEARCH_URL = "https://www.automationexercise.com/products?search="+SEARCH_TERM;
     public static final String EMPTY_CART_TEXT = "Cart is empty! Click here to buy products.";
-    public static final List<String> category =List.of("Women", "Men", "Kids");
-    public static final List<String>womenCategory =List.of("Dress", "Tops", "Saree");
-    public static final List<String> menCategory = List.of("TShirts", "Jeans");
-    public static final List<String> kidsCategory = List.of("Dress", "Tops & Shirts ");
-
-
+    public static final List<String> CATEGORY =List.of("Women", "Men", "Kids");
+    public static final List<String> WOMEN_CATEGORY =List.of("Dress", "Tops", "Saree");
+    public static final List<String> MEN_CATEGORY = List.of("TShirts", "Jeans");
+    public static final List<String> KIDS_CATEGORY = List.of("Dress", "Tops & Shirts ");
 
 
 }
