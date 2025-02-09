@@ -4,7 +4,9 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.mycommerce.utilities.ConfigReader;
+import lombok.Getter;
 
+@Getter
 public class PaymentPage {
 
     private final Page page;

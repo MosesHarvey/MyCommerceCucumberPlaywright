@@ -3,9 +3,11 @@ package com.mycommerce.pages;
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import lombok.Getter;
 
 import java.util.*;
 
+@Getter
 public class CartPage {
    private final Page page;
    // ==================Locators =================

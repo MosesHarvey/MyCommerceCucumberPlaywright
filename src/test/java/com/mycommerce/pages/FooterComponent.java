@@ -3,8 +3,10 @@ package com.mycommerce.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import lombok.Getter;
 
 
+@Getter
 public class FooterComponent {
 
     private final Page page;

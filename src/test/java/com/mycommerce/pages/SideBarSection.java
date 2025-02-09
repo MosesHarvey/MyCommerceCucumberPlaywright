@@ -5,11 +5,13 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.utilities.ConfigReader;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public class SideBarSection {
     private final Page page;
 

@@ -2,7 +2,9 @@ package com.mycommerce.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import lombok.Getter;
 
+@Getter
 public class ProductDetailPage {
     private final Page page;
 
@@ -42,33 +44,7 @@ public class ProductDetailPage {
 
     }
 
-    public Locator getProductDetails() {
-        return productDetails;
-    }
 
-    public Locator getProductName() {
-        return productName;
-    }
-
-    public Locator getProductCategory() {
-        return productCategory;
-    }
-
-    public Locator getProductPrice() {
-        return productPrice;
-    }
-
-    public Locator getAvailability() {
-        return availability;
-    }
-
-    public Locator getCondition() {
-        return condition;
-    }
-
-    public Locator getBrand() {
-        return brand;
-    }
 
 
     public String increaseProductQuantityTo(int quantity) {

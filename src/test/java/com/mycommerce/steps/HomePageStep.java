@@ -1,7 +1,5 @@
 package com.mycommerce.steps;
 
-
-
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.HeaderComponent;
@@ -15,9 +13,7 @@ import org.assertj.core.api.SoftAssertions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import java.util.List;
-
 
 public class HomePageStep  {
 
@@ -71,6 +67,7 @@ public class HomePageStep  {
     public void the_user_should_see_following_headings(List<String>headings) {
         headings.forEach(heading-> System.out.println(heading));
         headings.forEach(heading-> soft.assertThat(basePage.isTheHeadingWithGivenTextVisible(heading)));
+        soft.assertAll();
     }
 
     @Then("the user should Automation Exercise Logo")

@@ -4,8 +4,9 @@ import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import lombok.Getter;
 
-
+@Getter
 public class CheckoutPage {
     private final Page page;
     // ============== Locators ==================
@@ -49,45 +50,7 @@ public class CheckoutPage {
 
     }
 
-    public Locator getAddressDetailsHeading() {
-        return addressDetailsHeading;
-    }
 
-    public Locator getYourDeliveryAddress() {
-        return yourDeliveryAddress;
-    }
-
-    public Locator getYourBillingAddress() {
-        return yourBillingAddress;
-    }
-
-    public Locator getNameOnDeliveryAddress() {
-        return nameOnDeliveryAddress;
-    }
-
-    public Locator getCitySatePostCodeOnDeliveryAddress() {
-        return citySatePostCodeOnDeliveryAddress;
-    }
-
-    public Locator getPhoneNumberOnDeliveryAddress() {
-        return phoneNumberOnDeliveryAddress;
-    }
-
-    public Locator getNameOnBillingAddress() {
-        return nameOnBillingAddress;
-    }
-
-    public Locator getCitySatePostCodeOnBillingAddress() {
-        return citySatePostCodeOnBillingAddress;
-    }
-
-    public Locator getPhoneNumberOnBillingAddress() {
-        return phoneNumberOnBillingAddress;
-    }
-
-    public Locator getTotalPrice() {
-        return totalPrice;
-    }
 
     public void fillCommentBox(String yourComment){
         commentBox.fill(yourComment);

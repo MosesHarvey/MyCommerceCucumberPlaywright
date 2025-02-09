@@ -4,8 +4,11 @@ import com.github.javafaker.Faker;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.mycommerce.appdata.AccountInfo;
 import com.mycommerce.utilities.ConfigReader;
+import lombok.Getter;
 
+@Getter
 public class RegisterPage {
 
     private final Page page;
@@ -50,10 +53,10 @@ public class RegisterPage {
         return enterAccounInformationHeading.innerText();
     }
     public void fillAccountInfo(){
-        page.getByLabel("Mr.").check();
+page.getByLabel("Mr.").check();
         String fullName = faker.name().fullName();
-        ConfigReader.set("fullName", fullName);
-      registerNameBox.fill(fullName);
+        registerNameBox.fill(fullName);
+        AccountInfo.name =fullName;
       registerPasswordBox.fill(faker.internet().password());
 
     }

@@ -3,9 +3,10 @@ package com.mycommerce.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import lombok.Getter;
 
 
-
+@Getter
 public class HeaderComponent {
 
     private final Page page;

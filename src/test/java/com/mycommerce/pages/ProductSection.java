@@ -6,11 +6,13 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.utilities.ConfigReader;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public class ProductSection {
     private final Page page;
     private final Locator products;
