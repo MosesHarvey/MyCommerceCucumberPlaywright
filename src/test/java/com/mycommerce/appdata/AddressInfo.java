@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
-@Getter
-@Setter
+
 public class AddressInfo {
     public static String firstName;
     public static String lastName;
