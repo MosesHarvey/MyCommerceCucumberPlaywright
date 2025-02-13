@@ -1,17 +1,16 @@
 package com.mycommerce.steps;
 
-import com.aventstack.extentreports.Status;
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.BasePage;
 import com.mycommerce.pages.HeaderComponent;
 import com.mycommerce.pages.SideBarSection;
 import com.mycommerce.utilities.ConfigReader;
-import com.mycommerce.utilities.ExtentReportManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class HomePageStep  {
 
     @Given("the user is on the home page")
     public void the_user_is_on_the_home_page() {
-        ExtentReportManager.getTest().log(Status.INFO, "Navigating to: " + page.url());
+
         basePage.clickConsentBtn();
         System.out.println("the user on the home page");
 
@@ -57,11 +56,7 @@ public class HomePageStep  {
     @Then("the user should see page title {string}")
     public void the_User_Should_See_Page_Title(String title) {
         String actualTitle = BasePage.getPageTitle(page);
-        if (actualTitle.equals(title)) {
-            ExtentReportManager.getTest().log(Status.PASS, "Page title is correct: " + actualTitle);
-        } else {
-            ExtentReportManager.getTest().log(Status.FAIL, "Expected title: " + title + ", but got: " + actualTitle);
-        }
+        assertEquals(title, actualTitle);
 
     }
 
