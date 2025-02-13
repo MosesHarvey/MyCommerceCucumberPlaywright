@@ -1,13 +1,9 @@
 package com.mycommerce.pages;
 
-import com.microsoft.playwright.Frame;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.AriaRole;
-import com.microsoft.playwright.options.WaitForSelectorState;
 import lombok.Getter;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Getter

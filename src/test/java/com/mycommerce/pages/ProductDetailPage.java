@@ -24,6 +24,7 @@ public class ProductDetailPage {
     private final Locator reviewForm;
 
 
+
     public ProductDetailPage(Page page) {
         this.page = page;
         this.productDetails = page.locator(".product-details");
@@ -43,8 +44,6 @@ public class ProductDetailPage {
 
 
     }
-
-
 
 
     public String increaseProductQuantityTo(int quantity) {
