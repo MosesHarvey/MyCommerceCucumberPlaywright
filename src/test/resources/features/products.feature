@@ -77,7 +77,7 @@ Feature: Products
 
 
   @TC21
-  Scenario: Add Review on a Products
+  Scenario: Add Review on a Product
     Given the user is on the home page
     Then the user should see page title "Automation Exercise"
     And the user clicks on Products tab

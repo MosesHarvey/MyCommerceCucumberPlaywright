@@ -1,26 +1,6 @@
 @checkout @smoke
 Feature: Checkout Functions
 
-  @TC23
-  Scenario: Verify address details in checkout page
-    Given the user is on the home page
-    Then the user should see page title "Automation Exercise"
-    When the user clicks on SignupLogin tab
-    And the user fills all details in Signup and creates an account
-    Then the user verifies 'ACCOUNT CREATED!'
-    When the user clicks Continue button
-    And the user should see the heading 'Logged in as username'
-    When the user adds products to the cart
-    And the user clicks on Cart tab
-    Then the user verifies that the cart page is displayed
-    When the user clicks Proceed To Checkout button
-    Then the user verifies that the delivery address is the same as the address filled at the time of registration of account
-    And the user verifies that the billing address is the same as the address filled at the time of registration of account
-    When the user clicks on "Delete Account" tab
-    Then the user verifies 'ACCOUNT DELETED!'
-    When the user clicks Continue button
-
-
 
   @TC24
   Scenario: Download invoice after purchase an order

@@ -51,6 +51,7 @@ Feature: User Account and Order Process
     When the user clicks Continue button
     Then Logged in as Mr. with full Name should be visible
     When the user adds products to the cart
+    And the user clicks on Continue Shopping button on Added modal
     And the user clicks on Cart tab
     Then the user should see page title "Automation Exercise - Checkout"
     When the user clicks Proceed To Checkout button
@@ -76,12 +77,12 @@ Feature: User Account and Order Process
     When the user enters correct email address
     And the user enters correct password
     And the user clicks login button
-    Then Logged in as "username" should be visible
+    Then Logged in as registered username should be visible
     When the user adds products to the cart
     And the user clicks on Cart tab
     Then the user should see page title "Automation Exercise - Checkout"
     When the user clicks Proceed To Checkout button
-    Then the user verifies Address Details and Review Your Order
+    Then the user verifies registered Address Details and Review Your Order
     When the user enters a description in comment text area and clicks Place Order
     And the user enters payment details: Name on Card, Card Number, CVC, Expiration date
     When the user clicks Pay and Confirm Order button

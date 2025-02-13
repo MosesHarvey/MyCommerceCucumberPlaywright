@@ -1,4 +1,4 @@
- @login
+ @login @smoke
 Feature: Login
 
  Background:
@@ -12,7 +12,7 @@ Feature: Login
     When the user enters correct email address
     And the user enters correct password
     And the user clicks login button
-    Then Logged in as "username" should be visible
+    Then Logged in as registered username should be visible
 
  @TC03
  Scenario Outline: login with incorrect credentials
@@ -29,7 +29,7 @@ Feature: Login
  @TC04
  Scenario: Logout User
  When the user logged in with valid credentials
-  Then Logged in as "satang" should be visible
+  Then Logged in as registered username should be visible
   When the user clicks the Logout button
  Then the user should see the heading "Login to your account"
 
