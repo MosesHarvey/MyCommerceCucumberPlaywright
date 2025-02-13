@@ -1,16 +1,15 @@
 package com.mycommerce.steps;
 
 import com.microsoft.playwright.Page;
-
-import com.mycommerce.pages.BasePage;
-import com.mycommerce.pages.CartPage;
-import com.mycommerce.pages.CheckoutModal;
-import com.mycommerce.pages.CheckoutPage;
-import com.mycommerce.pages.PaymentPage;
-import com.mycommerce.pages.ProductSection;
+import com.mycommerce.appdata.AddressInfo;
+import com.mycommerce.appdata.AppConstant;
+import com.mycommerce.pages.*;
+import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OrderStep {
     private final Page page;
@@ -51,7 +50,15 @@ public class OrderStep {
 
     @Then("the user verifies Address Details and Review Your Order")
     public void the_user_verifies_address_details_and_review_your_order() {
-        System.out.println("The user verifies Address Details and Review Your Order");
+
+         assertEquals( "Mr. "+AddressInfo.firstName+ " " + AddressInfo.lastName,checkoutPage.getNameOnDeliveryAddress().textContent());
+        assertEquals( "Mr. "+AddressInfo.firstName+ " " + AddressInfo.lastName,checkoutPage.getNameOnBillingAddress().textContent());
+        assertEquals(AddressInfo.mobileNumber, checkoutPage.getPhoneNumberOnDeliveryAddress().textContent());
+        assertEquals(AddressInfo.mobileNumber, checkoutPage.getPhoneNumberOnBillingAddress().textContent());
+        String expectedCityStateZipCode = (AddressInfo.city + AddressInfo.state + AddressInfo.zipCode).replaceAll(" ", "");
+        assertEquals(expectedCityStateZipCode, checkoutPage.getCitySatePostCodeOnDeliveryAddress().textContent().replaceAll("\\s",""));
+        assertEquals(expectedCityStateZipCode, checkoutPage.getCitySatePostCodeOnBillingAddress().textContent().replaceAll("\\s",""));
+
     }
 
     @When("the user enters a description in comment text area and clicks Place Order")
@@ -63,7 +70,9 @@ public class OrderStep {
 
     @When("the user enters payment details: Name on Card, Card Number, CVC, Expiration date")
     public void the_user_enters_payment_details_name_on_card_card_number_cvc_expiration_date() {
-        paymentPage.fillPaymentDetails();
+
+        paymentPage.fillPaymentDetails(ConfigReader.get("cardHolder"),ConfigReader.get("cardNumber"),
+                ConfigReader.get("cvc"), ConfigReader.get("expiryMonth"),ConfigReader.get("expiryYear"));
 
     }
 
@@ -76,6 +85,22 @@ public class OrderStep {
     public void the_user_verifies_success_message(String successMessage) {
         assertTrue(BasePage.isElementWithTextVisible(Hooks.getPage(),successMessage));
     }
+
+    // ================ Place order: Login while checkout ================
+
+    @Then("the user verifies registered Address Details and Review Your Order")
+    public void the_user_verifies_registered_address_details_and_review_your_order() {
+       String expectedName ="Mr. "+ AppConstant.FIRST_NAME+" "+AppConstant.LAST_NAME;
+        assertEquals(expectedName,checkoutPage.getNameOnDeliveryAddress().textContent());
+        assertEquals(expectedName,checkoutPage.getNameOnBillingAddress().textContent());
+        assertEquals(AppConstant.MOBILE_NUMBER, checkoutPage.getPhoneNumberOnDeliveryAddress().textContent());
+        assertEquals(AppConstant.MOBILE_NUMBER, checkoutPage.getPhoneNumberOnBillingAddress().textContent());
+        String expectedCityStateZipCode = (AppConstant.CITY + AppConstant.STATE + AppConstant.ZIP_CODE).replaceAll(" ", "");
+        assertEquals(expectedCityStateZipCode, checkoutPage.getCitySatePostCodeOnDeliveryAddress().textContent().replaceAll("\\s",""));
+        assertEquals(expectedCityStateZipCode, checkoutPage.getCitySatePostCodeOnBillingAddress().textContent().replaceAll("\\s",""));
+
+    }
+
 
 
 

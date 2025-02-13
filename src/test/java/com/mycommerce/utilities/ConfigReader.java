@@ -1,6 +1,7 @@
 package com.mycommerce.utilities;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -13,20 +14,19 @@ public class ConfigReader {
     static {
 
         try {
-            String path = "configuration.properties";
-            FileInputStream input = new FileInputStream(path);
             properties = new Properties();
+            FileInputStream input = new FileInputStream("configuration.properties");
             properties.load(input);
-
             input.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-
+        }  catch (IOException e) {
+            throw new RuntimeException("Failed to load configuration file", e);
         }
     }
 
     public static String get(String keyName) {
-
+        if (properties == null) {
+            throw new IllegalStateException("Properties file is not loaded properly.");
+        }
         return properties.getProperty(keyName);
     }
 

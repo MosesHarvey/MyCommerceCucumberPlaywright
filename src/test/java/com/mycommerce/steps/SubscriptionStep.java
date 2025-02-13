@@ -6,7 +6,10 @@ import com.mycommerce.pages.FooterComponent;
 import com.mycommerce.pages.HeaderComponent;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static  org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class SubscriptionStep {
     private final Page page;
     private HeaderComponent headerComponent;

@@ -7,12 +7,12 @@ import com.mycommerce.pages.*;
 import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import org.assertj.core.api.SoftAssertions;
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductsStep {
 
@@ -57,7 +57,7 @@ public class ProductsStep {
     @Then("the user should be landed on the product detail page")
     public void the_user_should_be_landed_on_the_product_detail_page() {
 
-     assertEquals( AppConstant.PRODUCT_DETAIL_PAGE_TITLE,page.title());
+     assertEquals(AppConstant.PRODUCT_DETAIL_PAGE_TITLE,page.title());
     }
     @Then("the following details should be visible:")
     public void the_following_details_should_be_visible(List<String> details) {
@@ -70,12 +70,12 @@ public class ProductsStep {
         assertTrue(productDetailPage.getAvailability().isVisible());
         assertTrue(productDetailPage.getCondition().isVisible());
         assertTrue(productDetailPage.getBrand().isVisible());
-        assertTrue(productDetailPage.getProductName().textContent().isEmpty());
-        assertTrue(productDetailPage.getProductCategory().textContent().isEmpty());
-        assertTrue(productDetailPage.getProductPrice().textContent().isEmpty());
-        assertTrue(productDetailPage.getAvailability().textContent().isEmpty());
-        assertTrue(productDetailPage.getCondition().textContent().isEmpty());
-        assertTrue(productDetailPage.getBrand().textContent().isEmpty());
+        assertFalse(productDetailPage.getProductName().textContent().isEmpty());
+        assertFalse(productDetailPage.getProductCategory().textContent().isEmpty());
+        assertFalse(productDetailPage.getProductPrice().textContent().isEmpty());
+        assertFalse(productDetailPage.getAvailability().textContent().isEmpty());
+        assertFalse(productDetailPage.getCondition().textContent().isEmpty());
+        assertFalse(productDetailPage.getBrand().textContent().isEmpty());
     }
 
     // ==============Product Search in the Search Box =================
@@ -146,7 +146,10 @@ public class ProductsStep {
     @Then("the user verifies that products are visible in cart")
     public void the_user_verifies_that_products_are_visible_in_cart() {
         String productsDescriptions=cartPage.getItemDescriptions().toString();
-        productNames.forEach(productName -> {assertTrue(productsDescriptions.contains(productName));});
+        Assertions.assertFalse(productNames.isEmpty(), "Saved product names should not be empty");
+        Assertions.assertFalse(productsDescriptions.isEmpty(), "Saved product descriptions should not be empty");
+        productNames.forEach(productName -> assertTrue(productsDescriptions.contains(productName)));
+
 
     }
 

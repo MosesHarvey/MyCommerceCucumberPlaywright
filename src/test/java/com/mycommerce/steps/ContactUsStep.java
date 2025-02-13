@@ -1,15 +1,15 @@
 package com.mycommerce.steps;
 
+import com.github.javafaker.Faker;
 import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.BasePage;
 import com.mycommerce.pages.ContactUsPage;
 import com.mycommerce.pages.HeaderComponent;
-import com.mycommerce.utilities.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ContactUsStep {
@@ -35,8 +35,9 @@ public class ContactUsStep {
 
     @When("the user enters their name, email, subject, and message")
     public void the_user_enters_their_name_email_subject_and_message() {
-        String name = ConfigReader.get("userName");
-        String email = ConfigReader.get("email");
+        Faker faker = new Faker();
+        String name = faker.name().firstName();
+        String email = faker.internet().emailAddress();
         String subject = "issue with login";
         String message = "I am facing issues with the login";
 
