@@ -2,11 +2,12 @@ package com.mycommerce.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.mycommerce.utilities.PlaywrightManager;
 import lombok.Getter;
 
 @Getter
 public class ProductDetailPage {
-    private final Page page;
+    private Page page;
 
     // ============== Locators ==================
     private final Locator productDetails;
@@ -25,8 +26,8 @@ public class ProductDetailPage {
 
 
 
-    public ProductDetailPage(Page page) {
-        this.page = page;
+    public ProductDetailPage() {
+        this.page = PlaywrightManager.getPage();
         this.productDetails = page.locator(".product-details");
         this.productName = page.locator("div[class='product-information'] h2");
         this.productCategory = page.locator("div.product-information h2 >> xpath=following-sibling::p").first();
@@ -55,10 +56,6 @@ public class ProductDetailPage {
 
     public void clickAddToCartBtn() {
         addToCartBtnOnProductDetailPage.click();
-    }
-
-    public AddedModal navigateToAddedModal() {
-        return new AddedModal(page);
     }
 
     // =========== write your review =================

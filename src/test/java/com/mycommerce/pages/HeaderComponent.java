@@ -3,13 +3,14 @@ package com.mycommerce.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.mycommerce.utilities.PlaywrightManager;
 import lombok.Getter;
 
 
 @Getter
 public class HeaderComponent {
 
-    private final Page page;
+    private Page page;
     private final Locator homeTab;
     private final Locator productsTab;
     private final Locator cartTab;
@@ -20,8 +21,8 @@ public class HeaderComponent {
     private final Locator loggedInAsUserNameTab;
 
 
-    public HeaderComponent(Page page) {
-        this.page = page;
+    public HeaderComponent() {
+        this.page = PlaywrightManager.getPage();
         this.homeTab = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Home"));
         this.productsTab = page.locator("//a[@href='/products']");
         this.cartTab = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Cart"));

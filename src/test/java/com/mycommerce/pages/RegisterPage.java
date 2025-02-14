@@ -3,12 +3,13 @@ package com.mycommerce.pages;
 import com.github.javafaker.Faker;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.mycommerce.utilities.PlaywrightManager;
 import lombok.Getter;
 
 @Getter
 public class RegisterPage {
 
-    private final Page page;
+    private Page page;
     private Faker faker;
     private final  Locator enterAccounInformationHeading;
     private final Locator registerNameBox;
@@ -26,8 +27,8 @@ public class RegisterPage {
 
 
 
-    public RegisterPage(Page page) {
-        this.page = page;
+    public RegisterPage() {
+        this.page = PlaywrightManager.getPage();
         this.faker = new Faker();
         this.enterAccounInformationHeading =  page.getByText("ENTER ACCOUNT INFORMATION").first();
         this.registerNameBox = page.getByLabel("Name *", new Page.GetByLabelOptions().setExact(true));

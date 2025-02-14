@@ -1,7 +1,6 @@
 package com.mycommerce.steps;
 
 import com.github.javafaker.Faker;
-import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.*;
 import com.mycommerce.utilities.ConfigReader;
@@ -16,28 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductsStep {
 
-    private final Page page;
-    private  HeaderComponent headerComponent;
-    private ProductSection productSection;
-    private  ProductDetailPage productDetailPage;
-    SoftAssertions softAssertions;
-    private BasePage basePage;
-    private AddedModal addedModal;
+    private  HeaderComponent headerComponent = new HeaderComponent();
+    private ProductSection productSection = new ProductSection();
+    private  ProductDetailPage productDetailPage = new ProductDetailPage();
+    private BasePage basePage = new BasePage();
+    private AddedModal addedModal = new AddedModal();
+    private CartPage cartPage = new CartPage();
+    private SideBarSection sideBarSection = new SideBarSection();
+    SoftAssertions softAssertions= new SoftAssertions();
     List<String>productNames;
-    private CartPage cartPage;
-    private SideBarSection sideBarSection;
 
-    public ProductsStep() {
-        page = Hooks.getPage();
-        basePage = new BasePage(page);
-        headerComponent = new HeaderComponent(page);
-        this.productSection = new ProductSection(page);
-        this.productDetailPage = new ProductDetailPage(page);
-        this.addedModal = new AddedModal(page);
-        this.cartPage = new CartPage(page);
-        this.sideBarSection = new SideBarSection(page);
-        this.softAssertions = new SoftAssertions();
-    }
 
     // ======================Verify All Products and product detail page =============
     @When("the user clicks on Products tab")
@@ -57,7 +44,7 @@ public class ProductsStep {
     @Then("the user should be landed on the product detail page")
     public void the_user_should_be_landed_on_the_product_detail_page() {
 
-     assertEquals(AppConstant.PRODUCT_DETAIL_PAGE_TITLE,page.title());
+     assertEquals(AppConstant.PRODUCT_DETAIL_PAGE_TITLE,basePage.getPageTitle());
     }
     @Then("the following details should be visible:")
     public void the_following_details_should_be_visible(List<String> details) {
@@ -89,7 +76,7 @@ public class ProductsStep {
 
     @Then("the page url including the product name should be correct")
     public void the_page_url_including_the_product_name_should_be_correct() {
-        String currentUrl = Hooks.getPage().url();
+        String currentUrl = basePage.getCurrentUrl();
         System.out.println(currentUrl);
         assertEquals(currentUrl, AppConstant.PRODUCT_SEARCH_URL);
 
@@ -122,7 +109,7 @@ public class ProductsStep {
 
     @Then("the user verifies that they are navigated to the brand page")
     public void the_user_verifies_that_they_are_navigated_to_the_brand_page() {
-        assertEquals(sideBarSection.getExpectedBrandPageTitle(), basePage.getPageTitle(page));
+        assertEquals(sideBarSection.getExpectedBrandPageTitle(), basePage.getPageTitle());
     }
 
     @Then("the user should see that the brand products are displayed")

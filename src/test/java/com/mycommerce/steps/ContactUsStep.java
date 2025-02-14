@@ -1,7 +1,6 @@
 package com.mycommerce.steps;
 
 import com.github.javafaker.Faker;
-import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.BasePage;
 import com.mycommerce.pages.ContactUsPage;
@@ -13,17 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ContactUsStep {
-    private final Page page;
-    private BasePage basePage;
-    private HeaderComponent headerComponent;
-    private  ContactUsPage contactUsPage;
-
-    public ContactUsStep() {
-         page = Hooks.getPage();
-         basePage = new BasePage(page);
-         headerComponent = new HeaderComponent(page);
-        this.contactUsPage = new ContactUsPage(page);
-    }
+    private BasePage basePage = new BasePage();
+    private HeaderComponent headerComponent = new HeaderComponent();
+    private  ContactUsPage contactUsPage = new ContactUsPage();
 
     // ============= User fills and submits a contact us form successfully =================
     @When("the user clicks on Contact us tab")
@@ -60,7 +51,7 @@ public class ContactUsStep {
 
     @When("the user clicks the OK button")
     public void the_user_clicks_the_ok_button() {
-        basePage.acceptAlert(page);
+        basePage.acceptAlert();
         System.out.println("OK button clicked");
     }
 

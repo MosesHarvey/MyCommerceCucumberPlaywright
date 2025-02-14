@@ -1,6 +1,5 @@
 package com.mycommerce.steps;
 
-import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AddressInfo;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.*;
@@ -12,23 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OrderStep {
-    private final Page page;
-    private  BasePage basePage;
-    private  CartPage cartPage;
-    private  CheckoutModal checkoutModal;
-    private  CheckoutPage checkoutPage;
-    private  PaymentPage paymentPage;
-    private  ProductSection productSection;
+    private  BasePage basePage = new BasePage();
+    private  CartPage cartPage = new CartPage();
+    private  CheckoutModal checkoutModal = new CheckoutModal();
+    private  CheckoutPage checkoutPage = new CheckoutPage();
+    private  PaymentPage paymentPage = new PaymentPage();
+    private  ProductSection productSection = new ProductSection();
 
-    public OrderStep() {
-        this.page = Hooks.getPage();
-        this.basePage = new BasePage(page);
-        this.cartPage = new CartPage(page);
-        this.checkoutModal = new CheckoutModal(page);        this.checkoutPage = new CheckoutPage(page);
-        this.paymentPage = new PaymentPage(page);
-        this.productSection = new ProductSection(page);
-
-    }
 
     // ================ Place order: Register while checkout ================
     @When("the user adds products to the cart")
@@ -83,7 +72,7 @@ public class OrderStep {
 
     @Then("the user verifies success message {string}")
     public void the_user_verifies_success_message(String successMessage) {
-        assertTrue(BasePage.isElementWithTextVisible(Hooks.getPage(),successMessage));
+        assertTrue(basePage.isElementWithTextVisible(successMessage));
     }
 
     // ================ Place order: Login while checkout ================

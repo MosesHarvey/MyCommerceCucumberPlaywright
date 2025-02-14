@@ -6,6 +6,7 @@ import com.mycommerce.appdata.AccountInfo;
 import com.mycommerce.appdata.AppConstant;
 import com.mycommerce.pages.HeaderComponent;
 import com.mycommerce.pages.LoginSignUpPage;
+import com.mycommerce.utilities.PlaywrightManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -14,15 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class LoginStep {
-    private final Page page;
-    private HeaderComponent headerComponent;
-    private  LoginSignUpPage loginPage;
 
-    public LoginStep() {
-        this.page = Hooks.getPage();
-        this.headerComponent = new HeaderComponent(page);
-        this.loginPage = new LoginSignUpPage(page);
-    }
+    private HeaderComponent headerComponent = new HeaderComponent();
+    private  LoginSignUpPage loginPage = new LoginSignUpPage();
+
 
 
 // ===============login with valid credentials================
@@ -43,7 +39,7 @@ public class LoginStep {
     @When("the user clicks login button")
     public void the_user_clicks_login_button() {
        loginPage.clickLoginButton();
-       page.waitForLoadState();
+       PlaywrightManager.getPage().waitForLoadState();
     }
     @Then("Logged in as username should be visible")
     public void Logged_in_as_username_should_be_visible() {

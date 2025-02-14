@@ -1,7 +1,6 @@
 package com.mycommerce.steps;
 
 import com.github.javafaker.Faker;
-import com.microsoft.playwright.Page;
 import com.mycommerce.appdata.AccountInfo;
 import com.mycommerce.appdata.AddressInfo;
 import com.mycommerce.appdata.AppConstant;
@@ -16,22 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterSteps {
-    private final Page page;
-    private  LoginSignUpPage loginPage;
-    private  RegisterPage registerPage;
-    private HeaderComponent headerComponent;
-    private BasePage basePage;
-    Faker faker;
 
-
-    public RegisterSteps() {
-        page = Hooks.getPage();
-        headerComponent = new HeaderComponent(page);
-        this.basePage = new BasePage(page);
-        this.loginPage = new LoginSignUpPage(page);
-        this.registerPage = new RegisterPage(page);
-        faker = new Faker();
-    }
+    private  LoginSignUpPage loginPage = new LoginSignUpPage();
+    private  RegisterPage registerPage = new RegisterPage();
+    private HeaderComponent headerComponent = new HeaderComponent();
+    private BasePage basePage = new BasePage();
+    Faker faker = new Faker();
 
     // ==========================Register Scenario =========================
     @When("the user enters name and email address")

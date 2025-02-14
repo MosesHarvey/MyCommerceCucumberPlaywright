@@ -4,13 +4,14 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import com.mycommerce.utilities.PlaywrightManager;
 import lombok.Getter;
 
 @Getter
 public class LoginSignUpPage {
 
 
-    private final Page page;
+    private Page page;
     // Locators for login
 
     private final Locator userEmail;
@@ -28,10 +29,10 @@ public class LoginSignUpPage {
     private final Locator signupBtn;
 
 
-    public LoginSignUpPage(Page page) {
+    public LoginSignUpPage() {
 
 
-        this.page = page;
+        this.page = PlaywrightManager.getPage();
         //locators for login
 
         this.userEmail = page.locator("input[data-qa='login-email']");
